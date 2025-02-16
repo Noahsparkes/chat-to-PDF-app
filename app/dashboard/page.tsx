@@ -1,42 +1,33 @@
 "use client";
 
+import { Auth } from "@supabase/auth-ui-react";
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { supabase } from "@/lib/supabaseClient";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-export default function Dashboard() {
+export default function AuthPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function checkAuth() {
-      try {
-        const { data, error } = await supabase.auth.getUser();
-        if (error || !data.user) {
-          console.error("🔴 Not authenticated:", error?.message);
-          router.push("/auth"); // Redirect to auth
-        } else {
-          console.log("✅ Authenticated User:", data.user);
-          setUser(data.user);
-        }
-      } catch (err: any) {
-        console.error("Auth Check Error:", err.message);
-      } finally {
-        setLoading(false);
+    async function checkSession() {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        router.push("/dashboard"); // Redirect logged-in users
       }
     }
-
-    checkAuth();
+    checkSession();
   }, [router]);
 
-  if (loading) return <p>Loading...</p>;
-  if (!user) return <p>Redirecting to /auth...</p>;
-
   return (
-    <div>
-      <h1>Welcome to the Dashboard</h1>
-      <p>You are logged in as {user.email}</p>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-2xl font-bold mb-4">Sign in</h1>
+      <Auth
+        supabaseClient={supabase}
+        appearance={{ theme: ThemeSupa }}
+        providers={["google", "facebook"]}
+        redirectTo="http://localhost:3000/dashboard"
+      />
     </div>
   );
 }
