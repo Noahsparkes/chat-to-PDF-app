@@ -69,4 +69,24 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  
+/* new for now */
+  .body-class {
+    font-family: var(--font-geist-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
 }
+
+
