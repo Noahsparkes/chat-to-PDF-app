@@ -9,6 +9,7 @@ import {
   ZapIcon,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const features =[
   {
@@ -48,33 +49,47 @@ const features =[
 ]
 export default function Home() {
   return (
-   
-      <main className="overflow-scroll bg-gradient-to-bl p-2 lg:p-5 from-white to-indigo-600 flex-1">
-        <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
-         <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
-           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">Your Interactive Document Companion</h2>
+    <main className="overflow-scroll bg-gradient-to-bl p-2 lg:p-5 from-white to-indigo-600 flex-1">
+      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
+        <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-base font-semibold leading-7 text-indigo-600">
+              Your Interactive Document Companion
+            </h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Transform Your PDFs into Interactive Conversations 
+              Transform Your PDFs into Interactive Conversations
             </p>
-
 
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Introducing{" "}
               <span className="font-bold text-indigo-600">Chat with PDF.</span>
-             <br />
-             <br /> Upload your document, and our chatbot will answer your questions, sumumarize content, and more. <span className="font-bold text-indigo-600">
-              Chat with PDF</span>{" "}
-              <span className="font-bold text-indigo-600">dynamic conversations</span>,
-              enhancing productivity 10x fold effortlessly.
+              <br />
+              <br />
+              Upload your document, and our chatbot will answer your questions, summarize content, and more.{" "}
+              <span className="font-bold text-indigo-600">Chat with PDF</span>{" "}
+              <span className="font-bold text-indigo-600">dynamic conversations</span>, enhancing productivity 10x fold effortlessly.
             </p>
 
             <Button asChild className="mt-10">
               <Link href="/dashboard">Get Started</Link>
             </Button>
-           </div>
-         </div>
+          </div>
+
+          <div>
+            <div>
+              <Image
+              alt="App screenshot"
+              src="https://via.placeholder.com/800x500"
+              width={800}
+              height={500}
+              className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
+              />
+            </div>
+          </div>
         </div>
-      </main>
-  ); 
-} 
+      </div>
+    </main>
+  );
+}
+
+//find a suitable screenshot for the end app to put up on the landing page.
