@@ -70,7 +70,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <SessionContextProvider supabaseClient={supabase}>
       <html lang="en">
-        {/* <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
         <body className="body-class antialiased">
           {children}
         </body>

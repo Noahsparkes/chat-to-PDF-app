@@ -1,4 +1,3 @@
-//import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   BrainCogIcon,
@@ -11,42 +10,45 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
-const features =[
+const features = [
   {
     name: "Store your PDF Documents",
-    description:"Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
-    icon:GlobeIcon,
+    description:
+      "Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
+    icon: GlobeIcon,
   },
-
   {
     name: "Blazing Fast Responses",
-    description:"Expeirience lightning fast responses from our AI powered chatbot, enuring you get the answers you need in seconds.",
+    description:
+      "Experience lightning fast responses from our AI powered chatbot, ensuring you get the answers you need in seconds.",
     icon: ZapIcon,
   },
-
   {
     name: "Chat Memorisation",
-    description:"Our inteligent chatbot remembers your previous conversations, ensuring you get the most relevant answers.",
-    icon:BrainCogIcon,
-  },
-
-  {
-    name: "interactive PDF Viewer",
-    description:"Engage with your PDFs like never before using our intuitive PDF viewer.",
-    icon:EyeIcon,
+    description:
+      "Our intelligent chatbot remembers your previous conversations, ensuring you get the most relevant answers.",
+    icon: BrainCogIcon,
   },
   {
-    name: "Cloud backup",
-    description:"Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
-    icon:ServerCogIcon,
+    name: "Interactive PDF Viewer",
+    description:
+      "Engage with your PDFs like never before using our intuitive PDF viewer.",
+    icon: EyeIcon,
   },
-
+  {
+    name: "Cloud Backup",
+    description:
+      "Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
+    icon: ServerCogIcon,
+  },
   {
     name: "Responsive Across Devices",
-    description:"Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
-    icon:MonitorSmartphoneIcon,
-  }
-]
+    description:
+      "Keep all your important PDF files securely stored and easily accessible anytime, anywhere.",
+    icon: MonitorSmartphoneIcon,
+  },
+];
+
 export default function Home() {
   return (
     <main className="overflow-scroll bg-gradient-to-bl p-2 lg:p-5 from-white to-indigo-600 flex-1">
@@ -75,36 +77,35 @@ export default function Home() {
             </Button>
           </div>
 
-          <div className="relative overeflow-hidden pt-16 ">
+          <div className="relative overflow-hidden pt-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
               <Image
-              alt="App screenshot"
-              src="https://via.placeholder.com/800x500"
-              width={800}
-              height={500}
-              className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
+                alt="App screenshot"
+                src="https://via.placeholder.com/800x500"
+                width={800}
+                height={500}
+                className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-gray-900/10"
               />
-               <div aria-hidden="true" className="relative">
-                  <div className="absolute bottom-0 -inset-x-32 bg-gradient-to-t from-white/95 pt-[5%]" />
-               </div>
-             </div>
+              <div aria-hidden="true" className="relative">
+                <div className="absolute bottom-0 -inset-x-32 bg-gradient-to-t from-white/95 pt-[5%]" />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="">
-          <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10
-          text-base leading-7 text-gray-600 sm:grid-flow-col-2 lg:mx-0 lg:max-w-none
-          lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
-            {features.map(feature => (
-              <div key={feature.name}className="relative pl-9">
-                <dt className="inline font-semi-bold text-gray-900">
-                   <feature.icon 
-                   aria-hidden="true"
-                   className="aboslute left-1 top-1 h-5 w-5 
-                   text-indigo-600"
-                   />
+        <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-20 md:mt-24 lg:px-8">
+          <dl className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 text-base leading-7 text-gray-600 sm:grid-flow-col-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+            {features.map((feature) => (
+              <div key={feature.name} className="relative pl-9">
+                <dt className="flex items-center">
+                  <feature.icon
+                    aria-hidden="true"
+                    className="h-5 w-5 text-indigo-600 mr-2"
+                  />
+                  <span className="inline font-semi-bold text-gray-900">
+                    {feature.name}
+                  </span>
                 </dt>
-
                 <dd>{feature.description}</dd>
               </div>
             ))}
@@ -114,5 +115,3 @@ export default function Home() {
     </main>
   );
 }
-
-//find a suitable screenshot for the end app to put up on the landing page.
