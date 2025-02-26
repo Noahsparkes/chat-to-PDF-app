@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Navbar */}
-        <Header ></Header>
+        <Header userData={session?.user?.user_metadata} ></Header>
         {/* <header className="w-full bg-gray-800 p-4 shadow-md flex justify-between items-center">
           <h1 className="text-lg font-semibold">Welcome, {session?.user?.email}</h1>
         </header> */}

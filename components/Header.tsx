@@ -1,6 +1,15 @@
 import UserProfile from "@/components/ui/UserProfile";
 
-function Header({userData}:{ userData: userData}) {
+interface UserData {
+  name: string;
+  email: string;
+  profileImage: string;
+  created: string;
+  role?: string;
+  organization?: string;
+}
+
+function Header({userData}: { userData: UserData }) {
   return (
     <header className="w-full bg-gray-800 p-4 shadow-md flex justify-between items-center">
       <UserProfile userData={userData} />
