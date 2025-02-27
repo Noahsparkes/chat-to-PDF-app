@@ -280,9 +280,10 @@
 // };
 
 // export default UserProfile;
-
-import { useState, useEffect, useRef, MouseEvent, KeyboardEvent } from "react";
+import Image from 'next/image';
+import { useState, useEffect, useRef, MouseEvent , KeyboardEvent} from "react";
 import { FiGlobe, FiEdit3, FiSettings, FiLogOut } from "react-icons/fi";
+import { useSession } from "@supabase/auth-helpers-react";
 import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 
@@ -295,15 +296,21 @@ interface UserData {
   organization?: string;
 }
 
-interface UserProfileProps {
-  userData: UserData;
-}
-
-const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
+const UserProfile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const session = useSession();
   const router = useRouter();
+
+  const userData: UserData = {
+    name: session?.user?.user_metadata?.full_name || "Unknown User",
+    email: session?.user?.email || "No email",
+    profileImage: session?.user?.user_metadata?.avatar_url || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8",
+    created: session?.user?.created_at || "",
+    role: session?.user?.user_metadata?.role,
+    organization: session?.user?.user_metadata?.organization,
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -356,13 +363,17 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
         className="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-300"
         aria-label="Open account menu"
       >
-        <img
-          src={userData.profileImage}
-          alt="Profile"
-          onError={handleImageError}
-          className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 hover:border-blue-500 transition-all duration-300 transform hover:scale-105"
-          loading="lazy"
-        />
+        {userData.profileImage && (
+          <Image
+            src={userData.profileImage}
+            alt="Profile"
+            onError={handleImageError}
+            className="w-10 h-10 rounded-full object-cover border-2 border-gray-200 hover:border-blue-500 transition-all duration-300 transform hover:scale-105"
+            loading="lazy"
+            width={40}
+            height={40}
+          />
+        )}
         <span className="text-sm font-medium text-gray-700 dark:text-gray-200 hidden sm:block">{userData.email}</span>
       </button>
 
@@ -374,18 +385,22 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
         >
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-4">
-              <img
-                src={userData.profileImage}
-                alt="Profile"
-                onError={handleImageError}
-                className="w-20 h-20 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600 transition-transform duration-300 hover:scale-105"
-                loading="lazy"
-              />
+              {userData.profileImage && (
+                <Image
+                  src={userData.profileImage}
+                  alt="Profile"
+                  onError={handleImageError}
+                  className="w-20 h-20 rounded-full object-cover border-4 border-gray-200 dark:border-gray-600 transition-transform duration-300 hover:scale-105"
+                  loading="lazy"
+                  width={80}
+                  height={80}
+                />
+              )}
               <div className="space-y-1">
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">
                   {userData.name}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300">{userData.email} </p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">{userData.email}</p>
               </div>
             </div>
           </div>
