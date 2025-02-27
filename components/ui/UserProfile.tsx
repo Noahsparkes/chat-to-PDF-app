@@ -320,12 +320,12 @@ const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside as EventListener);
-    document.addEventListener("keydown", handleEscKey as EventListener);
+    document.addEventListener("mousedown", handleClickOutside as unknown as EventListener);
+    document.addEventListener("keydown", handleEscKey as unknown as EventListener);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside as EventListener);
-      document.removeEventListener("keydown", handleEscKey as EventListener);
+      document.removeEventListener("mousedown", handleClickOutside as unknown as EventListener);
+      document.removeEventListener("keydown", handleEscKey as unknown as EventListener);
     };
   }, []);
 
