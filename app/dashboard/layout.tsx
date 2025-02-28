@@ -7,6 +7,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
 import Image from "next/image";
+import { supabase } from "@/lib/supabaseClient"; // Import the supabase client
 
 interface UserData {
   name: string;
@@ -35,10 +36,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     return <p className="text-xl text-center mt-10">Loading...</p>;
   }
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push("/auth"); // Redirect after logout
+  };
+
   const userData: UserData = {
     name: session.user.user_metadata.full_name || "Unknown User",
     email: session.user.email || "No email",
-    profileImage: session.user.user_metadata.avatar_url || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8",
+    profileImage: session.user.user_metadata.avatar_url || "https://banner2.cleanpng.com/20180404/sqe/avhxkafxo.webp",
     created: session.user.created_at || "",
     role: session.user.user_metadata.role,
     organization: session.user.user_metadata.organization,
@@ -46,16 +52,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', current: true },
-    { name: 'Team', href: '/dashboard/team', current: false },
-    { name: 'Projects', href: '/dashboard/projects', current: false },
-    { name: 'Calendar', href: '/dashboard/calendar', current: false },
-    { name: 'Reports', href: '/dashboard/reports', current: false },
+    { name: 'Upgrade', href: '/dashboard/upgrade', current: false },
+    { name: 'My Documents', href: '/dashboard/documents', current: false },
+    { name: 'Pricing', href: '/dashboard/pricing', current: false },
+    { name: '+', href: '/dashboard/create', current: false },
   ];
 
   const userNavigation = [
     { name: 'Your Profile', href: '/dashboard/profile' },
     { name: 'Settings', href: '/dashboard/settings' },
-    { name: 'Sign out', href: '/auth/signout' },
+    { name: 'Sign out', href: '#', onClick: handleSignOut }, // Add onClick handler
   ];
 
   return (
@@ -118,6 +124,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <MenuItem key={item.name}>
                         <Link
                           href={item.href}
+                          onClick={item.onClick} // Add onClick handler
                           className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-none"
                         >
                           {item.name}
@@ -180,6 +187,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   key={item.name}
                   as="a"
                   href={item.href}
+                  onClick={item.onClick} // Add onClick handler
                   className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                 >
                   {item.name}
