@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
+import Image from "next/image";
 
 interface UserData {
   name: string;
@@ -64,9 +65,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="shrink-0">
-                <img
+                <Image
                   alt="Your Company"
                   src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                  width={32}
+                  height={32}
                   className="h-8 w-8"
                 />
               </div>
@@ -104,7 +107,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img alt="" src={userData.profileImage} className="h-8 w-8 rounded-full" />
+                      <Image alt="" src={userData.profileImage} width={32} height={32} className="h-8 w-8 rounded-full" />
                     </MenuButton>
                   </div>
                   <MenuItems
@@ -156,7 +159,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div className="border-t border-gray-700 pt-4 pb-3">
             <div className="flex items-center px-5">
               <div className="shrink-0">
-                <img alt="" src={userData.profileImage} className="h-10 w-10 rounded-full" />
+                <Image alt="" src={userData.profileImage} width={40} height={40} className="h-10 w-10 rounded-full" />
               </div>
               <div className="ml-3">
                 <div className="text-base font-medium text-white">{userData.name}</div>
