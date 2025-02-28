@@ -1,33 +1,42 @@
 "use client";
 
 import { useSession } from "@supabase/auth-helpers-react";
-//import { supabase } from "@/lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Header from "@/components/Header"; // Import the Header component
-//import { Button } from "@/components/ui/button";
-//import { cn } from "@/lib/utils";
 import Link from "next/link";
+
+interface UserData {
+  name: string;
+  email: string;
+  profileImage: string;
+  created: string;
+  role?: string;
+  organization?: string;
+}
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = useSession();
   const router = useRouter();
-  
-  
+
   useEffect(() => {
     if (!session) {
       router.push("/auth"); // Redirect if not logged in
     }
   }, [session, router]);
 
-  // const handleSignOut = async () => {
-  //   await supabase.auth.signOut();
-  //   router.push("/auth"); // Redirect after logout
-  // };
-
   if (!session) {
     return <p className="text-xl text-center mt-10">Loading...</p>;
   }
+
+  const userData: UserData = {
+    name: session.user.user_metadata.full_name || "Unknown User",
+    email: session.user.email || "No email",
+    profileImage: session.user.user_metadata.avatar_url || "https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8",
+    created: session.user.created_at || "",
+    role: session.user.user_metadata.role,
+    organization: session.user.user_metadata.organization,
+  };
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
@@ -55,50 +64,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </ul>
           </nav>
         </div>
-
-        {/* Logout Button */}
-        {/* <Button
-          variant="destructive"
-          onClick={handleSignOut}
-          className="w-full mt-6"
-        >
-          Sign Out
-        </Button> */}
       </aside>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Navbar */}
-        <Header userData={session?.user?.user_metadata} ></Header>
-        {/* <header className="w-full bg-gray-800 p-4 shadow-md flex justify-between items-center">
-          <h1 className="text-lg font-semibold">Welcome, {session?.user?.email}</h1>
-        </header> */}
-
+        <Header userData={userData} />
         {/* Page Content */}
         <main className="flex-1 p-6">{children}</main>
       </div>
     </div>
   );
 }
-
-
-
-// "use client";
-
-// import Header from "@/components/Header";
-
-// function DashboardLayout({ children }: { children: React.ReactNode }) {
-//   return (
-//     <div className="flex-1 flex flex-col  h-screen">
-//       <Header />
-
-//       <main className="flex-1 overflow-y-auto">
-//       {children}
-//       </main>
-//     </div>
-//   );
-// } 
-
-// export default DashboardLayout;
-
-
