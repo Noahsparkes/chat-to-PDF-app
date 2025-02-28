@@ -4,10 +4,10 @@ import { useSession } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from "next/link";
 import Image from "next/image";
-import { supabase } from "@/lib/supabaseClient"; // Import the supabase client
+import { supabase } from "@/lib/supabaseClient"; 
 
 interface UserData {
   name: string;
@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const userNavigation = [
     { name: 'Your Profile', href: '/dashboard/profile' },
     { name: 'Settings', href: '/dashboard/settings' },
-    { name: 'Sign out', href: '#', onClick: handleSignOut }, // Add onClick handler
+    { name: 'Sign out', href: '#', onClick: handleSignOut }, 
   ];
 
   return (
@@ -105,7 +105,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
-                  <BellIcon aria-hidden="true" className="h-6 w-6" />
+                  {/* <BellIcon aria-hidden="true" className="h-6 w-6" /> */}
                 </button>
 
                 <Menu as="div" className="relative ml-3">
@@ -124,7 +124,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <MenuItem key={item.name}>
                         <Link
                           href={item.href}
-                          onClick={item.onClick} // Add onClick handler
+                          onClick={item.onClick} 
                           className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-none"
                         >
                           {item.name}
@@ -172,14 +172,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="text-base font-medium text-white">{userData.name}</div>
                 <div className="text-sm font-medium text-gray-400">{userData.email}</div>
               </div>
-              <button
-                type="button"
-                className="relative ml-auto shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
-              >
-                <span className="absolute -inset-1.5" />
-                <span className="sr-only">View notifications</span>
-                <BellIcon aria-hidden="true" className="h-6 w-6" />
-              </button>
             </div>
             <div className="mt-3 space-y-1 px-2">
               {userNavigation.map((item) => (
@@ -187,7 +179,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   key={item.name}
                   as="a"
                   href={item.href}
-                  onClick={item.onClick} // Add onClick handler
+                  onClick={item.onClick} 
                   className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                 >
                   {item.name}
