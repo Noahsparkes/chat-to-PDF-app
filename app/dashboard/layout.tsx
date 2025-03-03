@@ -72,7 +72,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="flex items-center">
               <div className="shrink-0">
                 <Image
-                  alt="Your Company"
+                  alt="DocuMate"
                   src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                   width={32}
                   height={32}
