@@ -1,16 +1,13 @@
 'use client';
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import {CheckCircleIcon,
-       CircleArrowDown,
-       HammerIcon,
-       RocketIcon,
-       SaveIcon
+import {CircleArrowDown,RocketIcon,
+      
 } from 'lucide-react';
 
 function FileUploader() {
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
+    console.log(acceptedFiles);
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isFocused, isDragAccept } = useDropzone({ onDrop });
@@ -44,3 +41,12 @@ function FileUploader() {
 }
 
 export default FileUploader;
+
+/*
+import {CheckCircleIcon,
+CircleArrowDown,
+HammerIcon,
+RocketIcon,
+SaveIcon
+} from 'lucide-react';
+ */
