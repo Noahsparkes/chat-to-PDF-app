@@ -200,3 +200,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     </div>
   );
 }
+
+
+// To do:
+/// - replace all Supabase deprecited packages with the @supabase/ssr
+/// - testcally the app to see if it works
+/// - install Jest and write tests for the app
+/// - deploy the app to Vercel.

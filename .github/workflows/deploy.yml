@@ -20,7 +20,7 @@ jobs:
       - name: Lint & Test
         run: |
           npm run lint
-          npm test
+          npm run test
 
       - name: Deploy to Vercel
         run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
