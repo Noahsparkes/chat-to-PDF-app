@@ -59,6 +59,7 @@ jobs:
       - name: Deploy to Vercel
         run: |
           npx vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes \
+          --name=chat-pdf-app \
           --env NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }} \
           --env NEXT_PUBLIC_SUPABASE_ANON_KEY=${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }} \
           --env NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} \
