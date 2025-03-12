@@ -13,6 +13,7 @@ const authOptions: NextAuthOptions = {
     signIn: "/auth",
   },
 };
+console.log("NEXTAUTH_URL in production:", process.env.NEXTAUTH_URL);
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
