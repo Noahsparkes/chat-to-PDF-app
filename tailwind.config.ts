@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui";
+import tailwindcssAnimate from "tailwindcss-animate"; //changes by copilot here
 
 export default {
     darkMode: ["class"],
@@ -58,5 +60,6 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+ // OG line for plugins--> plugins: [require("tailwindcss-animate"), daisyui],
+ plugins: [tailwindcssAnimate, daisyui],
 } satisfies Config;
