@@ -9,6 +9,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient"; 
 
+
 interface UserData {
   name: string;
   email: string;

@@ -1,3 +1,33 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2017",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "strict": true,
+//     "noEmit": true,
+//     "esModuleInterop": true,
+//     "module": "esnext",
+//     "moduleResolution": "bundler",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "plugins": [
+//       {
+//         "name": "next"
+//       }
+//     ],
+//     "paths": {
+//       "@/*": ["./*"]
+//     }
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "node_modules/@types/supabase-fix.d.ts"],
+//   "exclude": ["node_modules"]
+// }
+
+
+
 {
   "compilerOptions": {
     "target": "ES2017",
@@ -19,9 +49,14 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      // 🔥 ADD THIS LINE (and keep existing @/* alias)
+      "@supabase/auth-helpers-nextjs": ["./types/supabase-fix.d.ts"]
+    
     }
   },
+  // ⚠️ REMOVE the node_modules/@types reference (wrong path)
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
+

@@ -25,5 +25,5 @@
 
 ## 19 June
 
-- Get the downloading feature working in tandem with Firebase.
-- Get Firebase working and logging pdf downloads
+- [] Get the downloading feature working in tandem with Firebase.
+- [] Get Firebase working and logging pdf downloads.
